@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:id="@+id/picture_snapshot_cardview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/card_spacing_default_half"
+    android:layout_marginRight="@dimen/card_spacing_default_half"
+    android:layout_marginTop="@dimen/text_spacing_default"
+    app:cardCornerRadius="@dimen/card_radius_default"
+    app:elevation="@dimen/card_elevation_static"
+
+    >
+
+
+    <RelativeLayout
+        android:id="@+id/picture_snapshot_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/picture_snapshot_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxHeight="2000dp"
+            android:maxWidth="2000dp"
+            fresco:placeholderImage="@drawable/huaban_placeholder"
+            />
+
+        <!--<TextView-->
+            <!--android:id="@+id/picture_snapshot_description"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@+id/picture_snapshot_image"-->
+            <!--/>-->
+
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

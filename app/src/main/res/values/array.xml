@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="title_recommend_main">
+        <item>所有</item>
+        <item>家居</item>
+        <item>美女</item>
+        <item>动漫</item>
+        <item>旅行</item>
+        <item>宠物</item>
+    </string-array>
+
+    <string-array name="type_recommend_main">
+        <item>all</item>
+        <item>home</item>
+        <item>beauty</item>
+        <item>anime</item>
+        <item>travel_places</item>
+        <item>pets</item>
+    </string-array>
+
+
+</resources>
