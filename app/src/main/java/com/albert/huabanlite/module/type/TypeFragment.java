@@ -10,6 +10,7 @@ import com.albert.huabanlite.di.component.ApiComponent;
 import com.albert.huabanlite.listener.OnLoadMoreListener;
 import com.albert.huabanlite.listener.OnPinClickListener;
 import com.albert.huabanlite.listener.OnSwipeRefreshListener;
+import com.albert.huabanlite.listener.OnTypeChangeListener;
 import com.albert.huabanlite.module.imagedetail.ImageDetailActivity;
 import com.albert.huabanlite.mvp.presenter.TypePresenter;
 import com.albert.huabanlite.mvp.view.TypeView;
@@ -26,17 +27,19 @@ import rx.functions.Action1;
 
 public class TypeFragment extends WaterfallFragment implements TypeView, OnPinClickListener {
 
+    private int maxId = Constant.Salad.DEFAULT_VALUE_MINUS_ONE;
+    private String type = Constant.Type.ALL;
 
     private TypePresenter typePresenter;
-
-    private int maxId = Constant.Salad.DEFAULT_VALUE_MINUS_ONE;
-
-
-    private String type = Constant.Type.ALL;
+    private OnTypeChangeListener onTypeChangeListener;
 
     public static TypeFragment newInstance(){
         TypeFragment typeFragment = new TypeFragment();
         return typeFragment;
+    }
+
+    public void setOnTypeChangeListener(OnTypeChangeListener onTypeChangeListener) {
+        this.onTypeChangeListener = onTypeChangeListener;
     }
 
     @Override
@@ -67,6 +70,7 @@ public class TypeFragment extends WaterfallFragment implements TypeView, OnPinCl
                     @Override
                     public void call(SwitchTypeEvent switchTypeEvent) {
                         type = switchTypeEvent.getType();
+                        onTypeChangeListener.onTypeChange(switchTypeEvent.getTitle());
                         refreshData();
                     }
                 }));

@@ -12,6 +12,7 @@ import android.widget.Toolbar;
 import com.albert.huabanlite.Entity.event.SwitchTypeEvent;
 import com.albert.huabanlite.R;
 import com.albert.huabanlite.base.BaseActivity;
+import com.albert.huabanlite.listener.OnTypeChangeListener;
 import com.albert.huabanlite.module.type.TypeFragment;
 import com.albert.huabanlite.unit.RxBus;
 import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
@@ -20,7 +21,7 @@ import com.nightonke.boommenu.BoomMenuButton;
 
 import butterknife.BindView;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements OnTypeChangeListener {
 
     @BindView(R.id.toolbar_main)
     Toolbar toolbarMain;
@@ -45,10 +46,6 @@ public class MainActivity extends BaseActivity {
         activity.startActivity(intent);
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     @Override
     protected int getLayoutId() {
@@ -57,16 +54,18 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void init(Bundle savedInstanceState) {
-
         titleArray = getResources().getStringArray(R.array.title_recommend_main);//显示的文字
         typeArray = getResources().getStringArray(R.array.type_recommend_main);//查询的关键字
 
+        setActionBar(toolbarMain);
+        setTitle(titleArray[0]);
         setBoomMenu();
 
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.container_with_refresh, TypeFragment.newInstance());
+        TypeFragment typeFragment = TypeFragment.newInstance();
+        typeFragment.setOnTypeChangeListener(this);
+        transaction.replace(R.id.container_with_refresh, typeFragment);
         transaction.commit();
-
     }
 
     private void setBoomMenu() {
@@ -78,11 +77,15 @@ public class MainActivity extends BaseActivity {
                     .listener(new OnBMClickListener() {
                         @Override
                         public void onBoomButtonClick(int index) {
-                            RxBus.getDefault().post(new SwitchTypeEvent(typeArray[temp]));
-
+                            RxBus.getDefault().post(new SwitchTypeEvent(typeArray[temp], titleArray[temp]));
                         }
                     });
             mainBmb.addBuilder(builder);
         }
+    }
+
+    @Override
+    public void onTypeChange(String type){
+        setTitle(type);
     }
 }
