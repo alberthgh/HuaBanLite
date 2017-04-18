@@ -52,7 +52,6 @@ public class UserActivity extends BaseActivity {
 
         setActionBar(userToolbar);
 
-
         userId = getIntent().getStringExtra(USER_ID);
         if (userId != null) {
             getFragmentManager().beginTransaction().replace(R.id.user_framelayout, UserBoardsFragment.newInstance(userId)).commit();

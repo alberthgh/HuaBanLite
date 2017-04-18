@@ -4,7 +4,7 @@
     android:id="@+id/user_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    >
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/user_appbar"
@@ -16,12 +16,13 @@
         <Toolbar
             android:id="@+id/user_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingTop="10dp"
             android:background="@color/colorPrimary"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             />
 
+        <!--app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"-->
     </android.support.design.widget.AppBarLayout>
 
     <FrameLayout
